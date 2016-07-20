@@ -3,6 +3,13 @@
   become: yes
   include: "os_family/{{ ansible_os_family }}.yml"
 
+- name: Install solarized theme for dircolors
+  become: yes
+  become_user: "{{ user.name }}"
+  git:
+    repo: "https://github.com/seebi/dircolors-solarized.git"
+    dest: "{{ user.home }}/.dircolors-solarized"
+
 - name: use some modules for zsh
   include: "modules.yml"
 

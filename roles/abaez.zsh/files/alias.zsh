@@ -1,3 +1,8 @@
+if [ "$TERM" != "dumb" ]; then
+  eval "`dircolors ~/.dircolors-solarized/dircolors.ansi-dark`"
+  alias ls='ls --color=auto'
+fi
+
 alias gv='gv --spartan'
 alias axiom='axiom -noht'
 # alias fpdebug="/home/skoffer/Flex/current/runtimes/player/11.1/lnx/flashplayerdebugger"
