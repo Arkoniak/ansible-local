@@ -1,0 +1,26 @@
+---
+- name: default user setup for zsh
+  become: yes
+  become_user: "{{ user.name }}"
+  copy: 
+    src: "{{ item }}"
+    dest: "{{ user.home }}/.z/"
+  with_items:
+    - alias.zsh
+    - export.zsh
+    - functions.zsh
+    - keybindings.zsh
+    - zshenv
+    - zshrc
+
+- name: link the zshrc and zshenv
+  become: yes
+  become_user: "{{ user.name }}"
+  file:
+    src="{{ user.home }}/.z/{{ item }}"
+    dest="{{ user.home }}/.{{ item }}"
+    state=link
+    force=yes
+  with_items:
+    - zshrc
+    - zshenv

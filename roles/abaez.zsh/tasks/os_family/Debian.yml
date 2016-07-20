@@ -1,0 +1,9 @@
+---
+- name: install zsh and dependencies
+  apt: name={{ item }} state=latest
+  with_items:
+    - git
+    - wget
+    - curl
+    - zsh
+

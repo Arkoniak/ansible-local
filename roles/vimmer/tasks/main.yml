@@ -1,0 +1,14 @@
+---
+# tasks file for demo.role
+- name: Ping server
+  ping: 
+  become: yes
+
+# - name: Delete user
+#   become: yes
+#   user: name=johnd state=absent remove=yes
+
+- name: Create new user
+  become: yes
+  user: name=johnd comment="John Doe" state=present
+

@@ -1,0 +1,7 @@
+---
+- name: Setup for example vim
+  hosts: localhost
+
+  roles:
+    - vimmer
+    - abaez.zsh

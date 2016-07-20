@@ -1,0 +1,11 @@
+typeset -U path
+path=(
+  $path
+  ~/bin
+  ~/.gem/ruby/2.2.0/bin
+  ~/.node_modules/bin
+  /data/Code/go/bin
+  /data/Programs/btchip-c-api/bin
+  /data/Programs/luvit/
+  /opt/android-sdk/platform-tools
+)
