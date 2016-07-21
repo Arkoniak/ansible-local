@@ -1,17 +1,23 @@
 #!/usr/bin/zsh
 
-# make man pages colored
-man() {
-    env \
-        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-        LESS_TERMCAP_md=$(printf "\e[1;31m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[1;32m") \
-            man "$@"
+# Terminal color grid
+
+term-colours() {
+  for x in 0 1 4 5 7 8; do for i in `seq 30 37`; do for a in `seq 40 47`; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";
 }
+
+# make man pages colored
+# man() {
+#     env \
+#         LESS_TERMCAP_mb=$(printf "\e[0;34m") \
+#         LESS_TERMCAP_md=$(printf "\e[0;34m") \
+#         LESS_TERMCAP_me=$(printf "\e[0m") \
+#         LESS_TERMCAP_se=$(printf "\e[0m") \
+#         LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+#         LESS_TERMCAP_ue=$(printf "\e[0m") \
+#         LESS_TERMCAP_us=$(printf "\e[1;32m") \
+#             man "$@"
+# }
 
 # checks for wordcount of a directory
 wcnt() {
