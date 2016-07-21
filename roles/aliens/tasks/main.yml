@@ -1,0 +1,8 @@
+---
+- include_vars: vault_spoilers.yml
+- include_vars: spoilers.yml
+
+- name: Put the spoiler text in the tmp directory on the remote server
+  copy:
+    content: "{{ spoiler_text }}"
+    dest: /tmp/spoiler_text.txt

@@ -1,6 +1,5 @@
 #!/usr/bin/zsh
 
-
 # make man pages colored
 man() {
     env \

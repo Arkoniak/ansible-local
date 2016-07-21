@@ -15,9 +15,18 @@ ZMOD=$HOME/.z
 #ZSH_THEME="nebirhos"
 ZSH_THEME="gnzh"
 
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -36,16 +45,57 @@ COMPLETION_WAITING_DOTS="true"
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git mercurial sudo vim-interaction vi-mode)
-plugins=(git mercurial sudo )
+plugins=(git command-not-found common-aliases sudo)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt ALIASES
+
+HISTFILE=$ZMOD/zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+
+## Dark magic :-(
+zstyle ':completion:*' verbose yes
+#zstyle ':completion:*' menu select
+zstyle ':completion:*' insert-tab false
+zstyle ':completion::complete:*' use-cache 1
+
+# _command_position() {
+#     if [[ -z "$BUFFER" ]]
+#     then _files
+#     else 
+# 			_autocd
+#     fi
+#   }
+# compdef _command_position -command-
+
+# PATH should be exported in zshenv
+# export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/skoffer/scripts:/home/skoffer/Projects/Ruby/rview:/home/skoffer/Flex/current/bin:/home/skoffer/JMonkey/JMonkey/bin:/home/skoffer/netbeans/bin:/home/skoffer/Eclipse/eclipse/:/home/skoffer/Projects/Moai/moai-git/release/linux/host-sdl/x64/bin:/home/oskin/Projects/Android/android-sdk-linux/platform-tools:/home/skoffer/Projects/Android/android-sdk-linux/tools:/home/oskin/.rvm/bin:/home/skoffer/scripts:/home/skoffer/Projects/Ruby/rview:/home/skoffer/Flex/current/bin:/home/skoffer/JMonkey/JMonkey/bin:/home/skoffer/netbeans/bin:/home/skoffer/Eclipse/eclipse/:/home/skoffer/Projects/Moai/moai-git/release/linux/host-sdl/x64/bin:/home/oskin/Projects/Android/android-sdk-linux/platform-tools:/home/skoffer/Projects/Android/android-sdk-linux/tools:/home/oskin/.rvm/bin"
+# PATH=$PATH:/home/skoffer/scripts:/home/skoffer/Projects/Ruby/rview:/home/skoffer/Flex/current/bin:/home/skoffer/JMonkey/JMonkey/bin:/home/skoffer/netbeans/bin:/home/skoffer/Eclipse/eclipse/:$MOAI_BIN
+# PATH=$PATH:$HOME/Projects/Android/android-sdk-linux/platform-tools:/home/skoffer/Projects/Android/android-sdk-linux/tools
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -53,10 +103,28 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
 
 # Key Bindings
 source $ZMOD/keybindings.zsh
-
 
 # Alias
 source $ZMOD/alias.zsh
@@ -67,17 +135,20 @@ source $ZMOD/export.zsh
 # Functions
 source $ZMOD/functions.zsh
 
+# Named Directories
+source $ZMOD/named_dirs.zsh
 
-# vi keys enable
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-    zle reset-prompt
-}
+# Надо проверить что это и вынести в functions.zsh
+## vi keys enable
+#function zle-line-init zle-keymap-select {
+#    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+#    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+#    zle reset-prompt
+#}
 
-zle -N zle-line-init
-zle -N zle-keymap-select
-#export KEYTIMEOUT=1
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+##export KEYTIMEOUT=1
 
 # Open termite terminal in Directory
 if [[ $TERM == xterm-termite ]]; then

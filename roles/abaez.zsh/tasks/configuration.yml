@@ -10,6 +10,7 @@
     - export.zsh
     - functions.zsh
     - keybindings.zsh
+    - named_dirs.zsh
     - zshenv
     - zshrc
 

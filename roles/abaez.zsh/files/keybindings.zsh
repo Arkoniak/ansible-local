@@ -42,3 +42,16 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-init
     zle -N zle-line-finish
 fi
+
+###########################################
+## My old config
+
+# bindkey 'Oa' history-beginning-search-backward
+# bindkey 'Ob' history-beginning-search-forward
+# bindkey '^[Od' emacs-backward-word
+# bindkey '^[Oc' emacs-forward-word
+# bindkey '^[[3~' delete-char
+# bindkey '^D' delete-word
+# bindkey '[29~' menu-complete
+# bindkey '^[[1~' beginning-of-line
+# bindkey '^[[4~' end-of-line
